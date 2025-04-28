@@ -4,81 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdanMaghrib - مواقيت الصلاة في المغرب</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            text-align: center;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem;
-            margin-bottom: 2rem;
-        }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            margin: 0.5rem;
-        }
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <!-- استيراد الخطوط العربية من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <!-- إضافة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>AdanMaghrib</h1>
+        <div class="logo">
+            <h1>AdanMaghrib</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="quran.html">القرآن الكريم</a></li>
+                <li><a href="hijri-calendar.html">التقويم الهجري</a></li>
+                <li><a href="morning-adhkar.html">أذكار الصباح</a></li>
+                <li><a href="evening-adhkar.html">أذكار المساء</a></li>
+                <li><a href="hadiths.html">الأحاديث</a></li>
+                <li><a href="qibla.html">القبلة</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
-        <div class="card">
-            <h2>مرحباً بك في موقع AdanMaghrib</h2>
-            <p>موقع إسلامي يوفر مواقيت الصلاة في المغرب، القرآن الكريم، التقويم الهجري، وأكثر من ذلك.</p>
-        </div>
+    <main>
+        <section class="date-cards">
+            <div class="card hijri-date">
+                <h2>التاريخ الهجري</h2>
+                <div id="hijri-date">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card gregorian-date">
+                <h2>التاريخ الميلادي</h2>
+                <div id="gregorian-date">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="card">
-            <h2>الميزات المتوفرة</h2>
-            <p>مواقيت الصلاة | القرآن الكريم | التقويم الهجري | أذكار الصباح والمساء | الأحاديث | اتجاه القبلة</p>
-        </div>
+        <section class="prayer-times">
+            <h2 class="section-title">أوقات الصلاة</h2>
+            <div class="city-selector">
+                <div>
+                    <label for="city-select">اختر المدينة:</label>
+                    <select id="city-select">
+                        <option value="Casablanca">الدار البيضاء</option>
+                        <option value="Rabat">الرباط</option>
+                        <option value="Marrakech">مراكش</option>
+                        <option value="Fes">فاس</option>
+                        <option value="Tangier">طنجة</option>
+                        <option value="Agadir">أكادير</option>
+                        <option value="Oujda">وجدة</option>
+                        <option value="Tetouan">تطوان</option>
+                    </select>
+                </div>
+                <button id="use-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    استخدام موقعي الحالي
+                </button>
+            </div>
+            <div class="prayer-cards" id="prayer-times-container">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل أوقات الصلاة...</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="card">
-            <h2>روابط سريعة</h2>
-            <a href="#" class="btn">القرآن الكريم</a>
-            <a href="#" class="btn">مواقيت الصلاة</a>
-            <a href="#" class="btn">التقويم الهجري</a>
-            <a href="#" class="btn">أذكار الصباح</a>
-            <a href="#" class="btn">أذكار المساء</a>
-        </div>
-    </div>
+        <section class="daily-content">
+            <div class="card daily-dhikr">
+                <h2 class="section-title">ذكر اليوم</h2>
+                <div class="dhikr-content" id="daily-dhikr">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري تحميل ذكر اليوم...</p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="share-btn">
+                        <i class="fas fa-share-alt"></i>
+                        مشاركة
+                    </button>
+                    <button class="print-btn">
+                        <i class="fas fa-print"></i>
+                        طباعة
+                    </button>
+                </div>
+            </div>
+            <div class="card daily-hadith">
+                <h2 class="section-title">حديث اليوم</h2>
+                <div class="hadith-content" id="daily-hadith">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري تحميل حديث اليوم...</p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="share-btn">
+                        <i class="fas fa-share-alt"></i>
+                        مشاركة
+                    </button>
+                    <button class="print-btn">
+                        <i class="fas fa-print"></i>
+                        طباعة
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-links">
+            <h2 class="section-title">روابط سريعة</h2>
+            <div class="links-grid">
+                <a href="quran.html" class="quick-link-card">
+                    <i class="fas fa-book-quran"></i>
+                    <span>القرآن الكريم</span>
+                </a>
+                <a href="hijri-calendar.html" class="quick-link-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>التقويم الهجري</span>
+                </a>
+                <a href="morning-adhkar.html" class="quick-link-card">
+                    <i class="fas fa-sun"></i>
+                    <span>أذكار الصباح</span>
+                </a>
+                <a href="evening-adhkar.html" class="quick-link-card">
+                    <i class="fas fa-moon"></i>
+                    <span>أذكار المساء</span>
+                </a>
+                <a href="hadiths.html" class="quick-link-card">
+                    <i class="fas fa-scroll"></i>
+                    <span>الأحاديث</span>
+                </a>
+                <a href="qibla.html" class="quick-link-card">
+                    <i class="fas fa-compass"></i>
+                    <span>اتجاه القبلة</span>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - AdanMaghrib</p>
+        <p>جميع الحقوق محفوظة &copy; <span id="current-year">2025</span> - AdanMaghrib</p>
     </footer>
+
+    <!-- إضافة مكتبة Moment.js للتعامل مع التواريخ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- إضافة مكتبة Moment Hijri للتعامل مع التقويم الهجري -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-hijri/2.1.2/moment-hijri.min.js"></script>
+    <script src="js/date-utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/prayer-times.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/mobile-touch.js"></script>
 </body>
 </html>

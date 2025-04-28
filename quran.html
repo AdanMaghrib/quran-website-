@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم - AdanMaghrib</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quran.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <!-- استيراد الخطوط العربية من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <!-- إضافة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>AdanMaghrib</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="quran.html" class="active">القرآن الكريم</a></li>
+                <li><a href="morning-adhkar.html">أذكار الصباح</a></li>
+                <li><a href="evening-adhkar.html">أذكار المساء</a></li>
+                <li><a href="hadiths.html">الأحاديث</a></li>
+                <li><a href="qibla.html">القبلة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="quran-header">
+            <h2 class="section-title">القرآن الكريم</h2>
+            <div class="search-container">
+                <input type="text" id="quran-search" placeholder="ابحث في القرآن الكريم..." aria-label="ابحث في القرآن الكريم">
+                <button id="search-btn" aria-label="بحث"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="view-options">
+                <button id="view-surah" class="active">السور</button>
+                <button id="view-juz">الأجزاء</button>
+                <button id="view-revelation">ترتيب النزول</button>
+            </div>
+        </section>
+
+        <section class="quran-content">
+            <div id="surahs-list" class="surahs-list">
+                <!-- سيتم ملء هذا القسم بقائمة السور من JavaScript -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل السور...</p>
+                </div>
+            </div>
+
+            <div id="search-results" class="search-results" style="display: none;">
+                <h3>نتائج البحث</h3>
+                <div class="results-container">
+                    <!-- سيتم ملء هذا القسم بنتائج البحث من JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="surah-view" class="surah-view" style="display: none;">
+            <div class="surah-header">
+                <button id="back-to-list" class="back-btn"><i class="fas fa-arrow-right"></i> العودة للقائمة</button>
+                <h3 id="surah-title" data-surah-number="1">اسم السورة</h3>
+                <div class="surah-info">
+                    <span id="surah-type">مكية/مدنية</span>
+                    <span id="surah-verses">عدد الآيات: 0</span>
+                </div>
+            </div>
+            
+            <div class="surah-options">
+                <div class="translation-options">
+                    <label for="translation-select">الترجمة:</label>
+                    <select id="translation-select">
+                        <option value="none">بدون ترجمة</option>
+                        <option value="en">الإنجليزية</option>
+                        <option value="fr">الفرنسية</option>
+                    </select>
+                </div>
+                
+                <div class="reciter-options">
+                    <label for="reciter-select">القارئ:</label>
+                    <select id="reciter-select">
+                        <option value="Abdul_Basit_Murattal">عبد الباسط عبد الصمد</option>
+                        <option value="Alafasy">مشاري راشد العفاسي</option>
+                        <option value="Maher_AlMuaiqly">ماهر المعيقلي</option>
+                        <option value="Husary">محمود خليل الحصري</option>
+                        <option value="Minshawi">محمد صديق المنشاوي</option>
+                        <option value="Sudais">عبد الرحمن السديس</option>
+                    </select>
+                    <button id="play-surah" class="audio-btn"><i class="fas fa-play"></i> استماع</button>
+                    <button id="stop-surah" class="audio-btn" style="display: none;"><i class="fas fa-stop"></i> إيقاف</button>
+                </div>
+                
+                <div class="tafsir-options">
+                    <label for="tafsir-select">التفسير:</label>
+                    <select id="tafsir-select">
+                        <option value="none">بدون تفسير</option>
+                        <option value="ar.jalalayn">تفسير الجلالين</option>
+                        <option value="ar.muyassar">التفسير الميسر</option>
+                        <option value="ar.kathir">تفسير ابن كثير</option>
+                        <option value="ar.sa3dy">تفسير السعدي</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="bismillah" id="bismillah">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+            
+            <div id="verses-container" class="verses-container">
+                <!-- سيتم ملء هذا القسم بآيات السورة من JavaScript -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل الآيات...</p>
+                </div>
+            </div>
+            
+            <div class="surah-navigation">
+                <button id="prev-surah" class="nav-btn"><i class="fas fa-chevron-right"></i> السورة السابقة</button>
+                <button id="next-surah" class="nav-btn">السورة التالية <i class="fas fa-chevron-left"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; <span id="current-year">2025</span> - AdanMaghrib</p>
+    </footer>
+
+    <!-- إضافة مكتبة Axios للتعامل مع طلبات API -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/quran.js"></script>
+    <script src="js/maher-quran-player.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/mobile-touch.js"></script>
+</body>
+</html>

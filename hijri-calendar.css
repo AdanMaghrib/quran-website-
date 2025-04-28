@@ -1,0 +1,445 @@
+/* ===== أنماط التقويم الهجري ===== */
+
+/* أنماط عامة للتقويم */
+.calendar-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.calendar-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.month-navigation h3 {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    margin: 0;
+}
+
+.nav-btn {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.nav-btn:hover {
+    background-color: #166938;
+}
+
+.calendar-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.action-btn {
+    background-color: var(--secondary-gold);
+    color: var(--bg-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.action-btn:hover {
+    background-color: #C29D0B;
+    transform: translateY(-2px);
+}
+
+.calendar-view-toggle {
+    display: flex;
+    border: 1px solid var(--primary-green);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.view-btn {
+    background-color: var(--bg-white);
+    color: var(--primary-green);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-btn.active {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+}
+
+.view-btn:hover:not(.active) {
+    background-color: rgba(29, 131, 72, 0.1);
+}
+
+/* أنماط عرض الشهر */
+.month-calendar {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--card-shadow);
+    margin-bottom: var(--spacing-xl);
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.weekdays div {
+    font-weight: 700;
+    color: var(--primary-green);
+    padding: var(--spacing-sm);
+    background-color: rgba(29, 131, 72, 0.1);
+    border-radius: var(--border-radius-sm);
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-xs);
+}
+
+.calendar-day {
+    position: relative;
+    min-height: 80px;
+    padding: var(--spacing-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: rgba(29, 131, 72, 0.05);
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
+}
+
+.calendar-day.today {
+    background-color: rgba(29, 131, 72, 0.1);
+    border-color: var(--primary-green);
+}
+
+.calendar-day.other-month {
+    opacity: 0.5;
+}
+
+.calendar-day.has-event {
+    border-bottom: 3px solid var(--secondary-gold);
+}
+
+.day-number {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    justify-content: space-between;
+}
+
+.hijri-day {
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.gregorian-day {
+    font-size: 0.8rem;
+    color: var(--text-dark-gray);
+}
+
+.day-events {
+    font-size: 0.8rem;
+    color: var(--text-dark-gray);
+    margin-top: var(--spacing-xs);
+}
+
+.event-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--secondary-gold);
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+/* أنماط عرض السنة */
+.year-calendar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.month-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.month-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.month-card h3 {
+    color: var(--primary-green);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    font-size: 0.8rem;
+}
+
+.month-weekday {
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-green);
+    padding: 2px;
+}
+
+.month-day {
+    text-align: center;
+    padding: 4px 2px;
+    border-radius: var(--border-radius-sm);
+}
+
+.month-day.today {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+}
+
+.month-day.has-event {
+    position: relative;
+}
+
+.month-day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: var(--secondary-gold);
+    border-radius: 50%;
+}
+
+/* أنماط محول التواريخ */
+.date-converter {
+    margin-bottom: var(--spacing-xl);
+}
+
+.converter-container {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.converter-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+.date-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--primary-green);
+    border-radius: var(--border-radius-sm);
+    font-family: 'Tajawal', sans-serif;
+    margin-bottom: var(--spacing-sm);
+}
+
+.hijri-input-group {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.hijri-select {
+    flex: 1;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--primary-green);
+    border-radius: var(--border-radius-sm);
+    font-family: 'Tajawal', sans-serif;
+}
+
+.convert-btn {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
+}
+
+.convert-btn:hover {
+    background-color: #166938;
+    transform: translateY(-2px);
+}
+
+.conversion-result {
+    flex: 1;
+    min-width: 300px;
+    background-color: rgba(29, 131, 72, 0.05);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border-right: 3px solid var(--primary-green);
+}
+
+.conversion-result h3 {
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    font-family: 'Amiri', serif;
+}
+
+#conversion-display {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* أنماط المناسبات الإسلامية */
+.islamic-events {
+    margin-bottom: var(--spacing-xl);
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.event-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--secondary-gold);
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.event-date {
+    display: inline-block;
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9rem;
+}
+
+.event-title {
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;
+}
+
+.event-description {
+    color: var(--text-dark-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .month-navigation {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .calendar-actions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: var(--spacing-xs);
+    }
+    
+    .day-number {
+        font-size: 1rem;
+    }
+    
+    .events-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-days {
+        font-size: 0.8rem;
+    }
+    
+    .calendar-day {
+        min-height: 50px;
+        padding: 2px;
+    }
+    
+    .day-number {
+        font-size: 0.9rem;
+    }
+    
+    .hijri-input-group {
+        flex-direction: column;
+    }
+}

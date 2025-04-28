@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديد اتجاه القبلة - AdanMaghrib</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <!-- استيراد الخطوط العربية من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- إضافة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط خاصة بصفحة القبلة */
+        .qibla-section {
+            text-align: center;
+        }
+        
+        .qibla-intro {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .qibla-compass-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto var(--spacing-xl);
+        }
+        
+        .compass-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .compass-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 120px;
+            background: linear-gradient(to bottom, var(--heading-color) 50%, var(--verse-number-bg) 50%);
+            transform-origin: center bottom;
+            transform: translate(-50%, -100%) rotate(0deg);
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            z-index: 10;
+            transition: transform 1s ease, background 0.3s ease;
+        }
+        
+        .compass-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--link-color);
+            border-radius: 50%;
+            z-index: 20;
+            transition: background-color 0.3s ease;
+        }
+        
+        .compass-markings {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        
+        .compass-markings::before {
+            content: 'N';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--link-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .compass-markings::after {
+            content: 'S';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--link-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .east-mark::before {
+            content: 'E';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: var(--link-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .west-mark::before {
+            content: 'W';
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: var(--link-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .qibla-info {
+            background-color: rgba(46, 134, 193, 0.1);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .qibla-info p {
+            margin: var(--spacing-sm) 0;
+            transition: color 0.3s ease;
+        }
+        
+        .qibla-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .qibla-btn {
+            background-color: var(--link-color);
+            color: var(--card-bg-color);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .qibla-btn:hover {
+            background-color: var(--heading-color);
+        }
+        
+        .qibla-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .city-selector {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .city-selector select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--link-color);
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            margin: 0 var(--spacing-sm);
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+            text-align: center;
+        }
+        
+        .notification.success {
+            background-color: var(--heading-color);
+        }
+        
+        .notification.error {
+            background-color: #e74c3c;
+        }
+        
+        .compass-degrees {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .compass-degree {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform-origin: bottom center;
+            width: 1px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        
+        .compass-degree.major {
+            height: 15px;
+            width: 2px;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark-mode .compass-degree {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        body.dark-mode .compass-degree.major {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .qibla-compass-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .qibla-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .qibla-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>AdanMaghrib</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="quran.html">القرآن الكريم</a></li>
+                <li><a href="morning-adhkar.html">أذكار الصباح</a></li>
+                <li><a href="evening-adhkar.html">أذكار المساء</a></li>
+                <li><a href="hadiths.html">الأحاديث</a></li>
+                <li><a href="qibla.html" class="active">القبلة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="qibla-section">
+            <h2 class="section-title">تحديد اتجاه القبلة</h2>
+            
+            <div class="qibla-intro card">
+                <p>يمكنك تحديد اتجاه القبلة من موقعك الحالي باستخدام هذه الأداة. اسمح للمتصفح بالوصول إلى موقعك لتحديد اتجاه القبلة بدقة.</p>
+                <p>يمكنك أيضًا اختيار مدينة من القائمة لمعرفة اتجاه القبلة منها.</p>
+            </div>
+            
+            <div class="city-selector">
+                <label for="qibla-city-select">اختر المدينة:</label>
+                <select id="qibla-city-select">
+                    <!-- سيتم ملء هذه القائمة من ملف JavaScript -->
+                </select>
+                <button id="use-location-qibla" class="qibla-btn">استخدم موقعي</button>
+            </div>
+            
+            <div class="qibla-compass-container">
+                <div class="compass-circle">
+                    <div class="compass-markings"></div>
+                    <div class="east-mark"></div>
+                    <div class="west-mark"></div>
+                    <div class="compass-degrees" id="compass-degrees"></div>
+                    <div class="compass-arrow" id="qibla-arrow"></div>
+                    <div class="compass-center"></div>
+                </div>
+            </div>
+            
+            <div class="qibla-info">
+                <p><strong>المسافة إلى مكة:</strong> <span id="distance-to-mecca">--</span> كم</p>
+                <p><strong>زاوية القبلة:</strong> <span id="qibla-angle">--</span> درجة</p>
+                <p><strong>الاتجاه:</strong> <span id="qibla-direction">--</span></p>
+            </div>
+            
+            <div class="qibla-buttons">
+                <button id="calibrate-compass" class="qibla-btn">معايرة البوصلة</button>
+                <button id="refresh-qibla" class="qibla-btn">تحديث اتجاه القبلة</button>
+            </div>
+            
+            <div class="card">
+                <h3>معلومات عن القبلة</h3>
+                <p>القبلة هي اتجاه الكعبة المشرفة في مكة المكرمة، وهي الاتجاه الذي يتوجه إليه المسلمون في صلاتهم.</p>
+                <p>تختلف زاوية القبلة باختلاف موقعك على سطح الأرض. في المغرب، يكون اتجاه القبلة عمومًا نحو الشرق مع ميل قليل نحو الجنوب.</p>
+                <p>للحصول على أدق اتجاه للقبلة، يُفضل استخدام موقعك الحالي بدلاً من اختيار مدينة من القائمة.</p>
+                <p>تعتمد دقة البوصلة على جودة المستشعرات في جهازك. للحصول على أفضل النتائج، قم بمعايرة البوصلة بتحريك جهازك في شكل رقم 8 في الهواء.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="notification" class="notification"></div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; <span id="current-year">2025</span> - AdanMaghrib</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/qibla.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/mobile-touch.js"></script>
+</body>
+</html>

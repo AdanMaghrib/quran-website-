@@ -1,0 +1,385 @@
+/* ===== تحسينات التوافق مع الهواتف المحمولة ===== */
+
+/* تحسينات عامة للأجهزة المحمولة */
+@media (max-width: 768px) {
+    /* تحسين حجم الخط للقراءة على الشاشات الصغيرة */
+    html {
+        font-size: 15px;
+    }
+    
+    /* تحسين الهوامش والمسافات */
+    main {
+        padding: var(--spacing-md);
+    }
+    
+    /* تحسين عرض القوائم */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 60px);
+        background-color: var(--primary-green);
+        flex-direction: column;
+        align-items: center;
+        padding-top: var(--spacing-lg);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 0 0 var(--spacing-md) 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+    
+    /* تحسين عرض البطاقات */
+    .date-cards, .daily-content {
+        flex-direction: column;
+    }
+    
+    .prayer-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .city-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    /* تحسين عرض صفحة القرآن */
+    .surah-options {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .audio-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .surah-card {
+        min-width: 120px;
+    }
+    
+    .surahs-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .verse {
+        padding: var(--spacing-md);
+    }
+    
+    .verse-text {
+        font-size: 1.3rem;
+    }
+    
+    /* تحسين عرض البوصلة */
+    .qibla-compass-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .qibla-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .qibla-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* تحسين أدوات إمكانية الوصول */
+    .theme-toggle, .accessibility-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle i, .accessibility-btn i {
+        font-size: 1.2rem;
+    }
+    
+    .accessibility-panel {
+        width: 220px;
+    }
+}
+
+/* تحسينات إضافية للهواتف الصغيرة */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    main {
+        padding: var(--spacing-sm);
+    }
+    
+    .prayer-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .surahs-list {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .surah-card {
+        min-width: 100px;
+        padding: var(--spacing-sm);
+    }
+    
+    .verse-text {
+        font-size: 1.2rem;
+    }
+    
+    .verse-translation {
+        font-size: 0.9rem;
+    }
+    
+    .verse-tafsir {
+        font-size: 0.9rem;
+    }
+    
+    .word-by-word-translation {
+        gap: 3px;
+    }
+    
+    .word-container {
+        padding: 3px;
+    }
+    
+    .arabic-word {
+        font-size: 1rem;
+    }
+    
+    .word-translation {
+        font-size: 0.7rem;
+    }
+    
+    .accessibility-tools {
+        bottom: 70px;
+    }
+    
+    .theme-toggle {
+        bottom: 70px;
+    }
+    
+    /* تحسين عرض البوصلة */
+    .qibla-compass-container {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* دعم الإيماءات اللمسية */
+@media (pointer: coarse) {
+    /* زيادة حجم عناصر التفاعل للشاشات اللمسية */
+    button, 
+    select, 
+    .nav-links a, 
+    .surah-card, 
+    .quick-link-card {
+        min-height: 44px; /* الحد الأدنى الموصى به من Apple للعناصر اللمسية */
+    }
+    
+    /* زيادة المسافة بين العناصر اللمسية */
+    .nav-links li,
+    .audio-options > div,
+    .surah-options > div {
+        margin-bottom: 10px;
+    }
+    
+    /* تحسين تجربة التمرير */
+    .verses-container {
+        -webkit-overflow-scrolling: touch; /* تمرير سلس على iOS */
+        scroll-behavior: smooth;
+        padding-bottom: 30px; /* مساحة إضافية في الأسفل للتمرير */
+    }
+    
+    /* تحسين تجربة النقر */
+    .verse {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    
+    .verse:active {
+        background-color: rgba(212, 172, 13, 0.2);
+    }
+    
+    /* تحسين عناصر التحكم بالصوت */
+    .audio-btn {
+        padding: 12px 20px;
+        margin: 5px 0;
+    }
+    
+    /* تحسين القوائم المنسدلة */
+    select {
+        padding: 10px 15px;
+        background-size: 12px;
+        background-position: left 10px center;
+    }
+    
+    /* تحسين أزرار التنقل */
+    .nav-btn {
+        padding: 12px 20px;
+    }
+    
+    /* تحسين تجربة البوصلة */
+    .compass-circle {
+        touch-action: none; /* منع السلوك الافتراضي للمس مثل التكبير */
+    }
+}
+
+/* تحسينات لدعم الشاشات الكبيرة */
+@media (min-width: 1200px) {
+    main {
+        max-width: 1400px;
+    }
+    
+    .surahs-list {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    .prayer-cards {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* تحسينات لدعم الشاشات العالية الدقة */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* تحسين حدة الخطوط */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* تحسينات لوضع الشاشة الأفقي على الهواتف */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 5px 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    main {
+        padding: 10px;
+    }
+    
+    .section-title {
+        margin-bottom: 15px;
+    }
+    
+    .qibla-compass-container {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+    
+    .prayer-cards {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .accessibility-tools, .theme-toggle {
+        transform: scale(0.8);
+    }
+}
+
+/* تحسينات لدعم الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .surahs-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .prayer-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .quick-links .links-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* تحسينات لدعم الطباعة */
+@media print {
+    header, footer, .accessibility-tools, .theme-toggle, 
+    .audio-options, .surah-navigation, .search-container, 
+    .view-options, .action-buttons {
+        display: none !important;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    main {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    
+    .verse {
+        page-break-inside: avoid;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .verse-text {
+        font-size: 16pt;
+    }
+    
+    .verse-translation {
+        font-size: 12pt;
+    }
+    
+    .verse-tafsir {
+        font-size: 10pt;
+    }
+}
+
+/* تحسينات لدعم وضع الحركة المخفضة */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001s !important;
+        transition-duration: 0.001s !important;
+    }
+    
+    .card:hover, .prayer-card:hover, .daily-dhikr:hover, .daily-hadith:hover {
+        transform: none !important;
+    }
+}
+
+/* تحسينات لدعم الشاشات ذات التباين العالي */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-green: #006400;
+        --primary-blue: #00008B;
+        --secondary-gold: #B8860B;
+        --text-dark-gray: #000000;
+    }
+    
+    .card, .prayer-card, .verse {
+        border: 1px solid black;
+    }
+    
+    a, button {
+        text-decoration: underline;
+    }
+}

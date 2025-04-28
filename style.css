@@ -1,0 +1,435 @@
+/* ===== المتغيرات العامة المحدثة ===== */
+:root {
+    /* الألوان الأساسية الجديدة */
+    --primary-green: #1D8348;  /* أخضر فاتح يرمز للإسلام */
+    --primary-blue: #2E86C1;
+    
+    /* ألوان ثانوية جديدة */
+    --secondary-gold: #D4AC0D;  /* ذهبي للتفاصيل المميزة */
+    --secondary-beige: #F5EEF8;  /* بيج للخلفية */
+    --secondary-brown: #D0B49F;
+    
+    /* ألوان الخلفية */
+    --bg-white: #FFFFFF;
+    --bg-light-beige: #F9F5F0;
+    
+    /* ألوان النصوص */
+    --text-black: #000000;
+    --text-dark-gray: #333333;
+    
+    /* الظلال والتأثيرات */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    
+    /* المسافات والهوامش */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* الزوايا المدورة */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+}
+
+/* ===== إعدادات عامة ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', 'Cairo', 'Amiri', sans-serif;  /* تحديث الخطوط */
+    background-color: var(--secondary-beige);  /* تحديث لون الخلفية */
+    color: var(--text-dark-gray);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-green);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-green);
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Tajawal', 'Cairo', sans-serif;  /* تحديث الخطوط */
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all 0.3s ease;
+}
+
+/* ===== الهيدر وشريط التنقل ===== */
+header {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    color: var(--bg-white);
+    margin: 0;
+    font-size: 1.8rem;
+    font-family: 'Amiri', serif;  /* تحديث الخط */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-right: var(--spacing-md);
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+
+.nav-links a {
+    color: var(--bg-white);
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);  /* إضافة تأثير حركة */
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: var(--spacing-sm);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--bg-white);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* ===== المحتوى الرئيسي ===== */
+main {
+    flex: 1;
+    padding: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--primary-green);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;  /* تحديث الخط */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--secondary-gold);  /* تحديث اللون */
+}
+
+/* ===== بطاقات التاريخ ===== */
+.date-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-lg);
+}
+
+.card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    border-top: 3px solid var(--primary-green);  /* إضافة حدود علوية */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.hijri-date, .gregorian-date {
+    text-align: center;
+}
+
+.hijri-date h2, .gregorian-date h2 {
+    color: var(--primary-green);  /* تحديث اللون */
+    font-family: 'Amiri', serif;  /* تحديث الخط */
+}
+
+/* ===== أوقات الصلاة ===== */
+.prayer-times {
+    margin-bottom: var(--spacing-xl);
+}
+
+.city-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    background-color: var(--bg-white);  /* إضافة خلفية */
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--card-shadow);
+}
+
+.city-selector label {
+    font-weight: 600;
+    margin-left: var(--spacing-sm);
+    font-family: 'Tajawal', sans-serif;  /* تحديث الخط */
+}
+
+.city-selector select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--primary-green);  /* تحديث اللون */
+    font-family: 'Tajawal', sans-serif;  /* تحديث الخط */
+    background-color: var(--bg-white);
+}
+
+#use-location {
+    background-color: var(--secondary-gold);  /* تحديث اللون */
+    color: var(--bg-white);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#use-location:hover {
+    background-color: #C29D0B;
+    transform: translateY(-2px);  /* إضافة تأثير حركة */
+}
+
+.prayer-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.prayer-card {
+    background-color: var(--primary-green);  /* تحديث اللون */
+    color: var(--bg-white);
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* إضافة تأثير انتقالي */
+}
+
+.prayer-card:hover {
+    transform: translateY(-3px);  /* إضافة تأثير حركة */
+    box-shadow: var(--hover-shadow);
+}
+
+.prayer-card h3 {
+    color: var(--bg-white);
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Amiri', serif;  /* تحديث الخط */
+}
+
+.prayer-card p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Tajawal', sans-serif;  /* تحديث الخط */
+}
+
+/* ===== المحتوى اليومي ===== */
+.daily-content {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.daily-dhikr, .daily-hadith {
+    flex: 1;
+    min-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* إضافة تأثير انتقالي */
+}
+
+.daily-dhikr:hover, .daily-hadith:hover {
+    transform: translateY(-5px);  /* إضافة تأثير حركة */
+    box-shadow: var(--hover-shadow);
+}
+
+.daily-dhikr {
+    background-color: rgba(29, 131, 72, 0.1);  /* تحديث اللون */
+    border-right: 3px solid var(--primary-green);  /* إضافة حدود */
+}
+
+.daily-hadith {
+    background-color: rgba(212, 172, 13, 0.1);  /* تحديث اللون */
+    border-right: 3px solid var(--secondary-gold);  /* إضافة حدود */
+}
+
+.dhikr-content, .hadith-content {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-sm);
+    font-family: 'Amiri', serif;  /* تحديث الخط */
+    line-height: 1.8;
+    font-size: 1.1rem;  /* زيادة حجم الخط */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+}
+
+.share-btn, .print-btn {
+    background-color: var(--primary-green);  /* تحديث اللون */
+    color: var(--bg-white);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.share-btn:hover, .print-btn:hover {
+    background-color: var(--secondary-gold);  /* تحديث اللون */
+    transform: translateY(-2px);  /* إضافة تأثير حركة */
+}
+
+/* ===== التذييل ===== */
+footer {
+    background-color: var(--primary-green);  /* تحديث اللون */
+    color: var(--bg-white);
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: auto;
+}
+
+footer p {
+    font-family: 'Tajawal', sans-serif;  /* تحديث الخط */
+}
+
+/* ===== إضافة أيقونات ===== */
+.icon {
+    margin-right: 5px;
+}
+
+/* ===== تحسينات إضافية ===== */
+.highlight-verse {
+    background-color: rgba(212, 172, 13, 0.2);  /* تمييز الآية بلون ذهبي فاتح */
+    animation: pulse 2s;  /* إضافة تأثير نبض */
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(212, 172, 13, 0.2);
+    }
+    50% {
+        background-color: rgba(212, 172, 13, 0.4);
+    }
+    100% {
+        background-color: rgba(212, 172, 13, 0.2);
+    }
+}
+
+/* ===== التصميم المتجاوب ===== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 60px);
+        background-color: var(--primary-green);
+        flex-direction: column;
+        align-items: center;
+        padding-top: var(--spacing-lg);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 0 0 var(--spacing-md) 0;
+    }
+    
+    .date-cards, .daily-content {
+        flex-direction: column;
+    }
+    
+    .prayer-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .city-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .prayer-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    main {
+        padding: var(--spacing-md);
+    }
+}

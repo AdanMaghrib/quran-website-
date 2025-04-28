@@ -1,0 +1,7 @@
+{
+  "name": "quran-website",
+  "type": "static",
+  "routes": [
+    { "pattern": "*", "script": null }
+  ]
+}

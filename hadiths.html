@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأحاديث النبوية - AdanMaghrib</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- استيراد الخطوط العربية من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* أنماط خاصة بصفحة الأحاديث */
+        .hadith-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .category-btn {
+            background-color: var(--secondary-gold);
+            color: var(--bg-white);
+            font-weight: 600;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary-green);
+        }
+        
+        .hadith-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hadith-card {
+            margin-bottom: var(--spacing-lg);
+            background-color: rgba(46, 134, 193, 0.05);
+        }
+        
+        .hadith-content {
+            font-family: 'Amiri', serif;
+            line-height: 1.8;
+            padding: var(--spacing-md);
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .hadith-text {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .hadith-source {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .search-input {
+            width: 70%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--primary-blue);
+            border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-blue);
+            color: var(--bg-white);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+        
+        .search-btn:hover {
+            background-color: var(--primary-green);
+        }
+        
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-input {
+                width: 100%;
+                border-radius: var(--border-radius-sm);
+                margin-bottom: var(--spacing-sm);
+            }
+            
+            .search-btn {
+                width: 100%;
+                border-radius: var(--border-radius-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>AdanMaghrib</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="morning-adhkar.html">أذكار الصباح</a></li>
+                <li><a href="evening-adhkar.html">أذكار المساء</a></li>
+                <li><a href="hadiths.html" class="active">الأحاديث</a></li>
+                <li><a href="qibla.html">القبلة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hadith-section">
+            <h2 class="section-title">الأحاديث النبوية</h2>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="hadith-search" placeholder="ابحث في الأحاديث...">
+                <button class="search-btn" id="search-btn">بحث</button>
+            </div>
+            
+            <div class="hadith-categories">
+                <button class="category-btn active" data-category="all">الكل</button>
+                <button class="category-btn" data-category="faith">الإيمان</button>
+                <button class="category-btn" data-category="ethics">الأخلاق</button>
+                <button class="category-btn" data-category="worship">العبادات</button>
+                <button class="category-btn" data-category="quran">القرآن</button>
+                <button class="category-btn" data-category="knowledge">العلم</button>
+            </div>
+            
+            <div class="hadiths-container">
+                <!-- أحاديث عن الإيمان -->
+                <div class="hadith-card card" data-category="faith">
+                    <h3>حديث عن الإيمان</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أنس رضي الله عنه عن النبي صلى الله عليه وسلم أنه قال: (لا يؤمن أحدكم حتى أكون أحب إليه من والده وولده والناس أجمعين)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="faith">
+                    <h3>حديث عن الإيمان</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أبي هريرة رضي الله عنه عن النبي صلى الله عليه وسلم قال: (الإيمان بضع وستون شعبة، والحياء شعبة من الإيمان)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="faith">
+                    <h3>حديث عن الإيمان</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أنس بن مالك رضي الله عنه عن النبي صلى الله عليه وسلم قال: (لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <!-- أحاديث عن الأخلاق -->
+                <div class="hadith-card card" data-category="ethics">
+                    <h3>حديث عن الأخلاق</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أبي هريرة رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: (المؤمن القوي خير وأحب إلى الله من المؤمن الضعيف، وفي كل خير، احرص على ما ينفعك، واستعن بالله ولا تعجز، وإن أصابك شيء فلا تقل: لو أني فعلت كان كذا وكذا، ولكن قل: قدَر الله وما شاء فعل، فإن لو تفتح عمل الشيطان)</p>
+                        <p class="hadith-source">رواه مسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="ethics">
+                    <h3>حديث عن الأخلاق</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن عبد الله بن مسعود رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: (عليكم بالصدق فإن الصدق يهدي إلى البر، وإن البر يهدي إلى الجنة، وما يزال الرجل يصدق ويتحرى الصدق حتى يكتب عند الله صديقا، وإياكم والكذب فإن الكذب يهدي إلى الفجور، وإن الفجور يهدي إلى النار، وما يزال الرجل يكذب ويتحرى الكذب حتى يكتب عند الله كذابا)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <!-- أحاديث عن العبادات -->
+                <div class="hadith-card card" data-category="worship">
+                    <h3>حديث عن العبادات</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أبي هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: (من صلى علي صلاة واحدة صلى الله عليه عشراً)</p>
+                        <p class="hadith-source">رواه مسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="worship">
+                    <h3>حديث عن العبادات</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أبي هريرة رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: (أرأيتم لو أن نهرا بباب أحدكم يغتسل منه كل يوم خمس مرات، هل يبقى من درنه شيء؟) قالوا: لا يبقى من درنه شيء، قال: (فذلك مثل الصلوات الخمس، يمحو الله بهن الخطايا)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <!-- أحاديث عن القرآن -->
+                <div class="hadith-card card" data-category="quran">
+                    <h3>حديث عن القرآن</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن عثمان بن عفان رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: (خيركم من تعلم القرآن وعلمه)</p>
+                        <p class="hadith-source">رواه البخاري</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="quran">
+                    <h3>حديث عن القرآن</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن عمر بن الخطاب رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: (إن الله يرفع بهذا الكتاب أقواما، ويضع به آخرين)</p>
+                        <p class="hadith-source">رواه مسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <!-- أحاديث عن العلم -->
+                <div class="hadith-card card" data-category="knowledge">
+                    <h3>حديث عن العلم</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن معاوية بن أبي سفيان رضي الله عنهما قال: سمعت النبي صلى الله عليه وسلم يقول: (من يرد الله به خيرا يفقهه في الدين)</p>
+                        <p class="hadith-source">رواه البخاري ومسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+                
+                <div class="hadith-card card" data-category="knowledge">
+                    <h3>حديث عن العلم</h3>
+                    <div class="hadith-content">
+                        <p class="hadith-text">عن أبي هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: (من سلك طريقاً يلتمس فيه علماً سهَّل الله له به طريقاً إلى الجنة)</p>
+                        <p class="hadith-source">رواه مسلم</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="share-btn">مشاركة</button>
+                        <button class="print-btn">طباعة</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; <span id="current-year">2025</span> - AdanMaghrib</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث السنة في التذييل
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // تصفية الأحاديث حسب الفئة
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const hadithCards = document.querySelectorAll('.hadith-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // إزالة الفئة النشطة من جميع الأزرار
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // إضافة الفئة النشطة للزر المحدد
+                    this.classList.add('active');
+                    
+                    // الحصول على فئة الزر
+                    const category = this.getAttribute('data-category');
+                    
+                    // عرض أو إخفاء البطاقات حسب الفئة
+                    hadithCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // البحث في الأحاديث
+            const searchInput = document.getElementById('hadith-search');
+            const searchBtn = document.getElementById('search-btn');
+            
+            function searchHadiths() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    // إذا كان حقل البحث فارغًا، أعد عرض جميع الأحاديث
+                    hadithCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    
+                    // إعادة تفعيل الفئة النشطة
+                    const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                    if (activeCategory !== 'all') {
+                        hadithCards.forEach(card => {
+                            if (card.getAttribute('data-category') !== activeCategory) {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                } else {
+                    // البحث في نص الأحاديث
+                    hadithCards.forEach(card => {
+                        const hadithText = card.querySelector('.hadith-text').textContent.toLowerCase();
+                        if (hadithText.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // إعادة تعيين الفئة النشطة إلى "الكل"
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    document.querySelector('[data-category="all"]').classList.add('active');
+                }
+            }
+            
+            searchBtn.addEventListener('click', searchHadiths);
+            
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    searchHadiths();
+                }
+            });
+            
+            // أزرار المشاركة والطباعة
+            const shareButtons = document.querySelectorAll('.share-btn');
+            shareButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const parentCard = this.closest('.card');
+                    const contentElement = parentCard.querySelector('.hadith-content');
+                    const content = contentElement.textContent.trim();
+                    
+                    // استخدام واجهة برمجة المشاركة إذا كانت متوفرة
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'مشاركة حديث من AdanMaghrib',
+                            text: content
+                        }).catch(err => {
+                            console.error('حدث خطأ أثناء المشاركة:', err);
+                            // نسخ النص إلى الحافظة كبديل
+                            copyToClipboard(content);
+                        });
+                    } else {
+                        // نسخ النص إلى الحافظة
+                        copyToClipboard(content);
+                    }
+                });
+            });
+            
+            const printButtons = document.querySelectorAll('.print-btn');
+            printButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const parentCard = this.closest('.card');
+                    const contentElement = parentCard.querySelector('.hadith-content');
+                    const content = contentElement.textContent.trim();
+                    
+                    // إنشاء نافذة طباعة جديدة
+                    const printWindow = window.open('', '_blank');
+                    printWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html lang="ar" dir="rtl">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>طباعة حديث من AdanMaghrib</title>
+                            <style>
+                                body {
+                                    font-family: 'Amiri', serif;
+                                    text-align: center;
+                                    padding: 20px;
+                                    direction: rtl;
+                                }
+                                .content {
+                                    margin: 30px auto;
+                                    max-width: 600px;
+                                    line-height: 1.8;
+                                    font-size: 18px;
+                                }
+                                .footer {
+                                    margin-top: 50px;
+                                    font-size: 14px;
+                                    color: #666;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <h1>AdanMaghrib - الأحاديث النبوية</h1>
+                            <div class="content">${content}</div>
+                            <div class="footer">تم الطباعة من موقع AdanMaghrib - أوقات الصلاة والأذكار للمغرب</div>
+                        </body>
+                        </html>
+                    `);
+                    printWindow.document.close();
+                    printWindow.focus();
+                    
+                    // طباعة بعد تحميل المحتوى
+                    setTimeout(() => {
+                        printWindow.print();
+                        printWindow.close();
+                    }, 500);
+                });
+            });
+            
+            // نسخ النص إلى الحافظة
+            function copyToClipboard(text) {
+                // إنشاء عنصر نصي مؤقت
+                const tempInput = document.createElement('textarea');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                
+                // تحديد النص ونسخه
+                tempInput.select();
+                document.execCommand('copy');
+                
+                // إزالة العنصر المؤقت
+                document.body.removeChild(tempInput);
+                
+                // إظهار رسالة للمستخدم
+                alert('تم نسخ النص إلى الحافظة');
+            }
+        });
+    </script>
+</body>
+</html>

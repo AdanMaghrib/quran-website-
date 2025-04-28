@@ -1,0 +1,143 @@
+/* ===== أنماط الروابط السريعة ===== */
+.quick-links {
+    margin-bottom: var(--spacing-xl);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.quick-link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    color: var(--primary-green);
+    text-align: center;
+    height: 120px;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+}
+
+.quick-link-card i {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.quick-link-card span {
+    font-weight: 600;
+    font-family: 'Tajawal', sans-serif;
+}
+
+/* ===== تحسينات إضافية للواجهة ===== */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    color: var(--primary-green);
+}
+
+.loading i {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* تحسين أزرار المشاركة والطباعة */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.share-btn, .print-btn {
+    background-color: var(--primary-green);
+    color: var(--bg-white);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover, .print-btn:hover {
+    background-color: var(--secondary-gold);
+    transform: translateY(-2px);
+}
+
+/* تحسين عرض التاريخ */
+.date-display {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-align: center;
+    margin: var(--spacing-md) 0;
+    font-family: 'Amiri', serif;
+}
+
+.date-info {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-sm);
+}
+
+.date-info span {
+    background-color: rgba(29, 131, 72, 0.1);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+}
+
+/* تحسين عرض أوقات الصلاة */
+.next-prayer {
+    border: 2px solid var(--secondary-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.next-prayer::before {
+    content: 'الصلاة القادمة';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--secondary-gold);
+    color: var(--bg-white);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 0 var(--border-radius-md) 0 var(--border-radius-sm);
+}
+
+/* تحسين التصميم المتجاوب */
+@media (max-width: 768px) {
+    .links-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .date-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
